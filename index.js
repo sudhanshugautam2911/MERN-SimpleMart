@@ -23,10 +23,6 @@ const crypto = require("crypto");
 const { isAuth, sanitizeUser, cookieExtractor } = require("./services/common");
 const path = require('path');
 
-// JWT options
-const opts = {};
-opts.jwtFromRequest = cookieExtractor;
-opts.secretOrKey = process.env.JWT_SECRET_KEY; // TODO: it should not be in code
 
 
 // EndPoint / stripe webhook
@@ -61,12 +57,15 @@ server.post('/webhook', express.raw({type: 'application/json'}), (request, respo
   response.send();
 });
 
+// JWT options
+const opts = {};
+opts.jwtFromRequest = cookieExtractor;
+opts.secretOrKey = process.env.JWT_SECRET_KEY; // TODO: it should not be in code
 
 // middlewares
 
 // step during build and deploy
-server.use(express.static(path.resolve(__dirname, 'build')))  
-
+server.use(express.static(path.resolve(__dirname, 'build')))
 server.use(cookieParser());
 
 // passport
@@ -80,18 +79,17 @@ server.use(
 server.use(passport.authenticate('session'));
 server.use(
   cors({
-    origin: '*',
-    exposedHeaders: ["X-Total-Count"],
+    exposedHeaders: ['X-Total-Count'],
   })
 );
 server.use(express.json());
 server.use("/products", isAuth(), productRouters.router); // we can also use JWT Token
-server.use("/brands", brandRouters.router);
-server.use("/categories", categoryRouters.router);
-server.use("/users", usersRouters.router);
-server.use("/auth", authRouters.router);
-server.use("/cart", cartRouters.router);
-server.use("/orders", ordersRouters.router);
+server.use("/brands", isAuth(),brandRouters.router);
+server.use("/categories",isAuth(), categoryRouters.router);
+server.use("/users", isAuth(),usersRouters.router);
+server.use("/auth",isAuth(), authRouters.router);
+server.use("/cart", isAuth(),cartRouters.router);
+server.use("/orders", isAuth(),ordersRouters.router);
 
 // passport strategies
 passport.use(
