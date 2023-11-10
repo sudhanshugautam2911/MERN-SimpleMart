@@ -168,7 +168,7 @@ passport.deserializeUser(function (user, cb) {
 // Payments
 
 
-const stripe = require("stripe")('sk_test_51OAofGSHlXMzqEut0drvMDGIrdyBcnziIUn0iVaaCNqjI7zdvxe65qLWDX71T3LGQCNonjBhkHj9ZdBNM58kdVEK00Rdl8xsDp');
+const stripe = require("stripe")(process.env.STRIPE_SERVER_KEY);
 
 server.post("/create-payment-intent", async (req, res) => {
   const { totalAmount } = req.body;
