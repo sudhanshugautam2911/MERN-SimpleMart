@@ -197,10 +197,6 @@ async function main() {
   console.log("Database connected");
 }
 
-// default Port
-server.get("/", (req, res) => {
-  res.send(`<h1> This is Homepage</h1>`);
-});
 
 //activate
 server.listen(process.env.PORT, () => {
