@@ -90,6 +90,7 @@ server.use("/users", isAuth(),usersRouters.router);
 server.use("/auth",isAuth(), authRouters.router);
 server.use("/cart", isAuth(),cartRouters.router);
 server.use("/orders", isAuth(),ordersRouters.router);
+server.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')))
 
 // passport strategies
 passport.use(
@@ -169,7 +170,7 @@ passport.deserializeUser(function (user, cb) {
 const stripe = require("stripe")(process.env.STRIPE_SERVER_KEY);
 
 server.post("/create-payment-intent", async (req, res) => {
-  const { totalAmount } = req.body;
+  const { totalAmount, orderId } = req.body;
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
@@ -178,6 +179,9 @@ server.post("/create-payment-intent", async (req, res) => {
     automatic_payment_methods: {
       enabled: true,
     },
+    metadata: {
+      orderId
+    }
   });
 
   res.send({
