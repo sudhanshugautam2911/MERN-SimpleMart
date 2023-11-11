@@ -90,7 +90,11 @@ server.use("/users", isAuth(),usersRouters.router);
 server.use("/auth",isAuth(), authRouters.router);
 server.use("/cart", isAuth(),cartRouters.router);
 server.use("/orders", isAuth(),ordersRouters.router);
-server.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')))
+
+// this line we add to make react router work in case of other routes doesnt match
+server.get('*', (req, res) =>
+  res.sendFile(path.resolve('build', 'index.html'))
+);
 
 // passport strategies
 passport.use(
