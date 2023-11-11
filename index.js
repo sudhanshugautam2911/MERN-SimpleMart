@@ -178,10 +178,10 @@ server.post("/create-payment-intent", async (req, res) => {
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: totalAmount*100,
+    amount: totalAmount*100,  // for decimal compensation
     currency: "inr",
     automatic_payment_methods: {
-      enabled: true,
+      enabled: true,  
     },
     metadata: {
       orderId
