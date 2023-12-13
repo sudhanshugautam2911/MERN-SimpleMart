@@ -6,6 +6,8 @@ const orderSchema = new Schema({
     items: { type: [Schema.Types.Mixed], required: true },
     totalAmount: {type: Number, },
     totalItems: {type: Number, },
+    size: {type : Schema.Types.Mixed},
+    color: { type : Schema.Types.Mixed},
     user: { type: Schema.Types.ObjectId, ref: 'User',  required: true },
 
     // TODO: we can use enum types for payment method

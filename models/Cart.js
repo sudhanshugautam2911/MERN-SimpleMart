@@ -7,8 +7,8 @@ const cartSchema = new Schema({
     // using reference so that we can fetch all details of product using ref: product
     product: { type: Schema.Types.ObjectId, ref: 'Product', required: true},
     user:{ type: Schema.Types.ObjectId, ref: 'User', required: true},
-    // size: { type : Schema.Types.Mixed},
-    // color: { type : Schema.Types.Mixed},
+    size: { type : Schema.Types.Mixed},
+    color: { type : Schema.Types.Mixed},
 })
 
 const virtual  = cartSchema.virtual('id');

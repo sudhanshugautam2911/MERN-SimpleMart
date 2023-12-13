@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema({
   },
   discountPercentage: {
     type: Number,
-    min: [1, "wrong min discount"],
+    min: [0, "wrong min discount"],
     max: [99, "wrong max discount"],
   },
   rating: {
