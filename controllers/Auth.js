@@ -90,19 +90,25 @@ exports.resetPasswordRequest = async (req, res) => {
     await user.save();
 
     const resetPageLink =
-      "http://localhost:3000/reset-password?token=" + token + "&email=" + email;
-    const subject = "Reset password for your simplemart account";
+      "https://mern-simple-mart.onrender.com/reset-password?token=" +
+      token +
+      "&email=" +
+      email;
+    const logoUrl =
+      "https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500";
+    const subject = "Password Reset Link";
     const html = `
-                <div style="font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
-                    <div style="max-width: 600px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                        <h1 style="color: #333;">Password Reset</h1>
-                        <p style="color: #666;">You have requested to reset your password. Click the link below to reset it:</p>
-                        <a href="${resetPageLink}" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: #fff; text-decoration: none; border-radius: 3px; margin-top: 10px;">Reset Password</a>
-                        <p style="color: #666; margin-top: 10px;">If you did not request a password reset, please ignore this email.</p>
-                        <p style="color: #666;">Thank you for using our service.</p>
-                    </div>
-                </div>
-            `;
+    <div style="font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+        <div style="max-width: 600px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <img src="${logoUrl}" alt="Logo" style="display: block; margin: 0 auto; max-width: 40%; height: auto;"/>
+            <h1 style="color: #333; margin-top: 10px;">Password Reset</h1>
+            <p style="color: #666;">You have requested to reset your password. Click the link below to reset it:</p>
+            <a href="${resetLink}" style="display: inline-block; padding: 10px 20px; background-color: #6366F1; color: #fff; text-decoration: none; border-radius: 3px; margin-top: 10px;">Reset Password</a>
+            <p style="color: #666; margin-top: 10px;">If you did not request a password reset, please ignore this email.</p>
+            <p style="color: #666;">Thank you for using our service.</p>
+        </div>
+    </div>
+`;
 
     if (email) {
       const response = await sendMail({
@@ -136,15 +142,19 @@ exports.resetPassword = async (req, res) => {
         user.salt = salt;
         await user.save();
         const subject = "Attention: Simplemart Password has been changed";
+        const logoUrl =
+          "https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500";
+
         const html = `
-                      <div style="font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
-                          <div style="max-width: 600px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                              <h1 style="color: #333;">Password Changed</h1>
-                              <p style="color: #666;">Your password has been successfully changed. If you did not initiate this change, please contact support immediately.</p>
-                              <p style="color: #666;">Thank you for using our service.</p>
-                          </div>
-                      </div>
-                  `;
+                <div style="font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+                    <div style="max-width: 600px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                        <img src="${logoUrl}" alt="Logo" style="display: block; margin: 0 auto; max-width: 40%; height: auto;"/>
+                        <h1 style="color: #333; margin-top: 10px;">Password Changed</h1>
+                        <p style="color: #666;">Your password has been successfully changed. If you did not initiate this change, please contact support immediately.</p>
+                        <p style="color: #666;">Thank you for using our service.</p>
+                    </div>
+                </div>
+`;
         if (email) {
           const response = await sendMail({ to: email, subject, html });
           res.json(response);
