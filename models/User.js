@@ -25,7 +25,8 @@ const userSchema = new Schema({
   orders: {
     type: [Schema.Types.Mixed]
   },
-  salt: Buffer
+  salt: Buffer,
+  resetPasswordToken: {type: String, default: ''}
 });
 
 
