@@ -32,12 +32,23 @@ const transporter = nodemailer.createTransport({
 });
 
 // Mail endpoint
-exports.sendMail = async function  ({ to, subject, text, html }) {
-    const info = await transporter.sendMail({
-      from: '"Simple Mart" <gautamsudhanshu2911@gmail.com>', // sender address
-      to,
-      subject,
-      text,
-      html
+exports.sendMail = async function ({ to, subject, text, html }) {
+  const mailData = {
+    from: '"Simple Mart" <gautamsudhanshu2911@gmail.com>', // sender address
+    to,
+    subject,
+    text,
+    html,
+  };
+
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(mailData, (err, info) => {
+      if (err) {
+        console.error(err);
+        reject(err);
+      } else {
+        resolve(info);
+      }
     });
+  });
 };
