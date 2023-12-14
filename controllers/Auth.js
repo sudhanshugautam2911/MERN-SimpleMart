@@ -103,7 +103,7 @@ exports.resetPasswordRequest = async (req, res) => {
             <img src="${logoUrl}" alt="Logo" style="display: block; margin: 0 auto; max-width: 40%; height: auto;"/>
             <h1 style="color: #333; margin-top: 10px;">Password Reset</h1>
             <p style="color: #666;">You have requested to reset your password. Click the link below to reset it:</p>
-            <a href="${resetLink}" style="display: inline-block; padding: 10px 20px; background-color: #6366F1; color: #fff; text-decoration: none; border-radius: 3px; margin-top: 10px;">Reset Password</a>
+            <a href="${resetPageLink}" style="display: inline-block; padding: 10px 20px; background-color: #6366F1; color: #fff; text-decoration: none; border-radius: 3px; margin-top: 10px;">Reset Password</a>
             <p style="color: #666; margin-top: 10px;">If you did not request a password reset, please ignore this email.</p>
             <p style="color: #666;">Thank you for using our service.</p>
         </div>
