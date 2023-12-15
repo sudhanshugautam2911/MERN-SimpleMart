@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {Schema} = mongoose;
 
 const productSchema = new mongoose.Schema({
   title: {
@@ -31,10 +32,10 @@ const productSchema = new mongoose.Schema({
   category: { type: String, required: true },
   thumbnail: { type: String, required: true },
   images: { type: [String], required: true },
-  colors: { type: String },
-//   colors: { type: [Schema.Types.Mixed] },
-//   sizes: { type: [Schema.Types.Mixed] },
-  sizes: { type: String },
+  // colors: { type: String },
+  colors: { type: [Schema.Types.Mixed] },
+  sizes: { type: [Schema.Types.Mixed] },
+  // sizes: { type: String },
   highlights: { type: [String] },
   discountPrice: { type: Number },
   deleted: { type: Boolean, default: false },

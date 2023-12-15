@@ -95,12 +95,12 @@ exports.resetPasswordRequest = async (req, res) => {
       "&email=" +
       email;
     const logoUrl =
-      "https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500";
+      "https://i.postimg.cc/JnHHy8y7/Screenshot-2023-12-13-200146.png";
     const subject = "Password Reset Link";
     const html = `
     <div style="font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
         <div style="max-width: 600px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-            <img src="${logoUrl}" alt="Logo" style="display: block; margin: 0 auto; max-width: 40%; height: auto;"/>
+            <img src="${logoUrl}" alt="Logo" style="display: block; margin: 0 auto; max-width: 20%; height: auto;"/>
             <h1 style="color: #333; margin-top: 10px;">Password Reset</h1>
             <p style="color: #666;">You have requested to reset your password. Click the link below to reset it:</p>
             <a href="${resetPageLink}" style="display: inline-block; padding: 10px 20px; background-color: #6366F1; color: #fff; text-decoration: none; border-radius: 3px; margin-top: 10px;">Reset Password</a>
@@ -143,12 +143,12 @@ exports.resetPassword = async (req, res) => {
         await user.save();
         const subject = "Attention: Simplemart Password has been changed";
         const logoUrl =
-          "https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500";
+          "https://i.postimg.cc/JnHHy8y7/Screenshot-2023-12-13-200146.png";
 
         const html = `
                 <div style="font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
                     <div style="max-width: 600px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                        <img src="${logoUrl}" alt="Logo" style="display: block; margin: 0 auto; max-width: 40%; height: auto;"/>
+                        <img src="${logoUrl}" alt="Logo" style="display: block; margin: 0 auto; max-width: 20%; height: auto;"/>
                         <h1 style="color: #333; margin-top: 10px;">Password Changed</h1>
                         <p style="color: #666;">Your password has been successfully changed. If you did not initiate this change, please contact support immediately.</p>
                         <p style="color: #666;">Thank you for using our service.</p>
