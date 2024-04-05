@@ -86,7 +86,7 @@ server.use(
   })
 );
 server.use(express.json());
-server.use("/products", isAuth(), productRouters.router); // we can also use JWT Token
+server.use("/products", productRouters.router); // we can also use JWT Token
 server.use("/brands", brandRouters.router);
 server.use("/categories", categoryRouters.router);
 server.use("/users", usersRouters.router);
